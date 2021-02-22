@@ -1,0 +1,91 @@
+# Dies ist ein Kommentar.
+# Es koennen beliebig viele Kommentare eingefuegt werden.
+# Leere Zeilen werden ueberlesen
+# WICHTIG!!!!!!
+#
+# Definition der Tabellen
+# Die entsprechenden Tabellen werden zwischen [START_TABELLE] und [END_TABELLE] definiert
+# Alle Attribute, die ein au_fd oder ein as_fd haben, muessen mit einem fd. beginnen
+# Alle Attribute, die ein au_sfd oder ein as_sfd haben, muessen mit einem sfd. beginnen
+#
+# Definition der zu suchenden Attribute
+# Der erste Wert ist IMMER ein Schluesselbegriff und darf nicht falsch geschrieben werden.
+# P01: ist ungleich p01: ist ungleich P1: ist ungleich P1 ist ungleich P1. und so weiter!!!!!
+# Ein Schluesselbegriff MUSS!!!! mit einem : enden
+# Beispiel: P01:
+# Der nächste Wert ist das eigentliche Attribut
+# Dieses Attribut muss in einer der Tabellen existieren
+# Beispiel: fd.au_fd__item_description_1,-,XX____
+# Nach dem Attributnamen kommt ein "," mit dem Defaultwert
+# ACHTUNG: Der Default - Wert ist Pflicht!!!!
+# An dem Defaultwert erkennt die Software, ob es ein String oder eine Zahl ist
+# 0=Zahl, - ist String
+# Nach dem zweiten Komma kann eine Sucheinschränkung kommen
+# Unterstriche stehen fuer ein einzelnes, zu ersetzenden Zeichen.
+# Das X Steht fuer den festen Wert
+# Beispiel: 55????66
+# Dann ist die Suchabfrage 55????66
+# Somit werden Daten gefunden wie 55000166 / 55888866 / 55345666
+# Es wird NICHT gefunden: 5500016 / 5588866 / 5345666
+# Feste Werte, die immer in der Abfrage stehen, werden zwischen
+# [START_FIXWERT] [END_FIXWERT] definiert. Diese Werte werden immer
+# an das Ende der Abfrage mit einer "und" Verknuepfung angefuegt.
+######
+[START_TABELLE]
+fd:
+k_t_folders
+sfd:
+k_t_pl_wf
+[END_TABELLE]
+######
+[START_FIXWERT]
+au_fd__site_no:
+100
+[END_FIXWERT]
+######
+[START_ATTRIBUT]
+#Bezeichnung 1
+P01:
+fd.au_fd__item_description_1,-,XX____X%
+#---------------
+#Bezeichnung 2
+P02:
+fd.au_fd__item_description_2,-,XX____
+#---------------
+#Bezeichnung 4
+P03:
+fd.au_fd__item_description_4,-,
+#---------------
+#Produktgruppe
+P04:
+au_fd__product_no,-,
+#---------------
+#Produktbeschreibung
+P05:
+fd.au_fd__prod_description_de,-,
+#---------------
+#Belegungseinheit
+P06:
+fd.au_fd__inv_no,-,
+#---------------
+#Belegungseinheit Beschreibung
+P07:
+au_fd__inv_description,-,
+#---------------
+#Arbeitsplannummer
+P08:
+sfd.au_sfd__workplan_no,-,
+#---------------
+#Arbeitsplanposition Nummer
+P09:
+au_sfd__op_ap_posno,-,
+#---------------
+#Arbeitsplanposition
+P10:
+sfd.au_sfd__workplan_position,0,
+#---------------
+#Dokumentenschluessel Produktion Key
+P10:
+fd.as_fd__name,-,
+#---------------
+[END_ATTRIBUT]
